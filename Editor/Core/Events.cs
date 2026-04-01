@@ -81,9 +81,30 @@ namespace HMI.Workspace.Editor.Core
         public static readonly EventChannel<ActionFailedEvent> Failed = new();
     }
 
+    public static class DependencyEvents
+    {
+        public static readonly EventChannel<AssetDepsResolvedEvent> AssetResolved = new();
+    }
+
     public static class AIEvents
     {
         public static readonly EventChannel<ContextSuggestionsReadyEvent> SuggestionsReady = new();
         public static readonly EventChannel<CommandResultReadyEvent> CommandResult = new();
+    }
+
+    /// <summary>
+    /// 资产依赖解析完成事件。
+    /// DependencyController 异步解析资产依赖后发布，DependencyPanelView 消费。
+    /// </summary>
+    public readonly struct AssetDepsResolvedEvent
+    {
+        public AssetDepsResolvedEvent(string guid, IReadOnlyList<string> dependencyPaths)
+        {
+            Guid = guid;
+            DependencyPaths = dependencyPaths;
+        }
+
+        public string Guid { get; }
+        public IReadOnlyList<string> DependencyPaths { get; }
     }
 }

@@ -35,6 +35,11 @@ namespace HMI.Workspace.Editor.Views
 
             InitializeArchitecture();
             BindViews();
+
+            // Initialize 必须在 BindViews 之后调用：
+            // Controller.Initialize() 会发布事件（如 FilteredAssetsChanged），
+            // View 必须先完成订阅才能接收到初始数据。
+            _workspaceController.Initialize();
         }
 
         private void InitializeArchitecture()
@@ -67,8 +72,10 @@ namespace HMI.Workspace.Editor.Views
             _workspaceController.AddChild(dependencyController);
             _workspaceController.AddChild(aiController);
             _workspaceController.AddChild(sceneController);
-            _workspaceController.Initialize();
 
+            // 注意：这里只构建对象图，不调用 Initialize()。
+            // Initialize() 在 BindViews() 之后由 CreateGUI() 统一触发，
+            // 确保 View 订阅事件后才发布初始数据。
             rootVisualElement.userData = new WindowContext(_state, selectionController, assetController, actionController, aiController);
         }
 
