@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="workspace-root" class="workspace-root">
+        <ui:VisualElement name="top-bar" class="top-bar">
+            <ui:Label name="selection-label" text="(none)" class="top-item" />
+            <ui:Label name="scene-label" text="Untitled Scene" class="top-item" />
+            <ui:TextField name="command-input" class="command-input" />
+            <uie:ToolbarSearchField name="search-input" class="search-input" />
+            <ui:Label name="pipeline-label" text="Built-in" class="top-item" />
+        </ui:VisualElement>
+        <ui:TwoPaneSplitView name="main-split" fixed-pane-index="0" fixed-pane-initial-dimension="240" orientation="Horizontal">
+            <ui:VisualElement name="left-panel" class="left-panel">
+                <ui:Label text="Workspace" class="panel-title" />
+                <ui:Button text="Project Assets" />
+                <ui:Button text="Favorites" />
+                <ui:Button text="Recent" />
+            </ui:VisualElement>
+            <ui:TwoPaneSplitView name="center-right-split" fixed-pane-index="1" fixed-pane-initial-dimension="360" orientation="Horizontal">
+                <ui:VisualElement name="center-panel" class="center-panel">
+                    <ui:ListView name="asset-grid" class="asset-grid" />
+                </ui:VisualElement>
+                <ui:VisualElement name="right-panel" class="right-panel">
+                    <ui:Label name="inspector-asset-name" text="No Selection" class="panel-title" />
+                    <ui:Image name="asset-preview" class="asset-preview" />
+                    <ui:Button name="apply-btn" text="Apply to Selection" />
+                    <ui:Button name="instantiate-btn" text="Instantiate in Scene" />
+                </ui:VisualElement>
+            </ui:TwoPaneSplitView>
+        </ui:TwoPaneSplitView>
+        <ui:VisualElement name="bottom-bar" class="bottom-bar">
+            <ui:Label name="status-message" text="Ready" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

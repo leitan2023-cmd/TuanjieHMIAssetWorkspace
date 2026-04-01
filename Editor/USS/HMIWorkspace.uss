@@ -1,0 +1,77 @@
+.workspace-root {
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: rgb(26, 26, 31);
+    color: rgb(232, 232, 239);
+}
+
+.top-bar {
+    height: 38px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: rgb(34, 34, 40);
+}
+
+.top-item {
+    margin-right: 8px;
+    min-width: 120px;
+}
+
+.command-input {
+    flex-grow: 1;
+    margin-right: 8px;
+}
+
+.search-input {
+    width: 220px;
+    margin-right: 8px;
+}
+
+.left-panel, .center-panel, .right-panel {
+    padding: 8px;
+}
+
+.left-panel {
+    background-color: rgb(34, 34, 40);
+}
+
+.center-panel {
+    background-color: rgb(29, 29, 36);
+}
+
+.right-panel {
+    background-color: rgb(38, 38, 46);
+}
+
+.panel-title {
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+}
+
+.asset-grid {
+    flex-grow: 1;
+}
+
+.asset-card {
+    min-height: 24px;
+    padding-left: 6px;
+    padding-right: 6px;
+    -unity-text-align: middle-left;
+}
+
+.asset-preview {
+    height: 180px;
+    margin-bottom: 8px;
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgb(22, 22, 28);
+}
+
+.bottom-bar {
+    height: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+    justify-content: center;
+    background-color: rgb(34, 34, 40);
+}

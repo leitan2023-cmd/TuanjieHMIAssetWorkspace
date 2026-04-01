@@ -1,0 +1,13 @@
+{
+  "name": "com.hmi.workspace",
+  "displayName": "HMI Asset Workspace",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "Unity Editor package scaffold for HMI Asset Workspace.",
+  "author": {
+    "name": "OpenAI"
+  },
+  "dependencies": {
+    "com.unity.modules.uielements": "1.0.0"
+  }
+}
