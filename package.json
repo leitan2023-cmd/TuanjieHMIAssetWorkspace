@@ -1,9 +1,9 @@
 {
   "name": "com.hmi.workspace",
-  "displayName": "HMI Asset Workspace",
+  "displayName": "HMI Asset Studio",
   "version": "0.1.0",
   "unity": "2022.3",
-  "description": "Unity Editor package scaffold for HMI Asset Workspace.",
+  "description": "面向智能座舱 HMI 团队的统一资产与场景工作区：资产浏览、批量替换、场景搭建、车辆配置、逻辑流编辑等。",
   "author": {
     "name": "OpenAI"
   },
