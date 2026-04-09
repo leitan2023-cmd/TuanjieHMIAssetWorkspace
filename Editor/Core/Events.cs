@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HMI.Workspace.Editor.Data;
+using HMI.Workspace.Runtime.Logic;
 
 namespace HMI.Workspace.Editor.Core
 {
@@ -76,9 +77,9 @@ namespace HMI.Workspace.Editor.Core
 
     public static class ActionEvents
     {
-        public static readonly EventChannel<ActionStatesChangedEvent> StatesChanged = new();
-        public static readonly EventChannel<ActionExecutedEvent> Executed = new();
-        public static readonly EventChannel<ActionFailedEvent> Failed = new();
+        public static readonly EventChannel<ActionStatesChangedEvent> StatesChanged = new() { DebugLabel = "ActionEvents.StatesChanged" };
+        public static readonly EventChannel<ActionExecutedEvent> Executed = new() { DebugLabel = "ActionEvents.Executed" };
+        public static readonly EventChannel<ActionFailedEvent> Failed = new() { DebugLabel = "ActionEvents.Failed" };
     }
 
     public static class DependencyEvents
@@ -90,6 +91,93 @@ namespace HMI.Workspace.Editor.Core
     {
         public static readonly EventChannel<ContextSuggestionsReadyEvent> SuggestionsReady = new();
         public static readonly EventChannel<CommandResultReadyEvent> CommandResult = new();
+    }
+
+    // ── 跨视图模式选择上下文事件 ──────────────────────────────────
+
+    /// <summary>
+    /// 选择上下文事件 — 由任意视图模式发布，InspectorPanelView 消费。
+    /// 携带当前视图模式下选中的摘要信息，不依赖特定状态对象。
+    /// </summary>
+    public readonly struct SelectionContextEvent
+    {
+        public SelectionContextEvent(
+            string sourceMode,
+            string title,
+            string subtitle,
+            string detail,
+            string actionHint,
+            Texture2D preview = null)
+        {
+            SourceMode = sourceMode;
+            Title = title;
+            Subtitle = subtitle;
+            Detail = detail;
+            ActionHint = actionHint;
+            Preview = preview;
+        }
+
+        /// <summary>来源模式标识：AssetBrowser, BatchReplace, SceneBuilder, VehicleSetup</summary>
+        public string SourceMode { get; }
+        /// <summary>主标题（如资产名、模板名、目标对象名）</summary>
+        public string Title { get; }
+        /// <summary>副标题（如类型、分类）</summary>
+        public string Subtitle { get; }
+        /// <summary>详细信息（多行，如路径、配置摘要）</summary>
+        public string Detail { get; }
+        /// <summary>操作提示（如 "选择候选材质以启用替换"）</summary>
+        public string ActionHint { get; }
+        /// <summary>预览图（可选）</summary>
+        public Texture2D Preview { get; }
+    }
+
+    /// <summary>
+    /// 选择上下文清除事件 — 当切换视图模式或取消选择时发布。
+    /// </summary>
+    public readonly struct SelectionContextClearedEvent
+    {
+        public SelectionContextClearedEvent(string sourceMode, string emptyMessage)
+        {
+            SourceMode = sourceMode;
+            EmptyMessage = emptyMessage;
+        }
+
+        public string SourceMode { get; }
+        public string EmptyMessage { get; }
+    }
+
+    public static class SelectionEvents
+    {
+        public static readonly EventChannel<SelectionContextEvent> ContextChanged = new();
+        public static readonly EventChannel<SelectionContextClearedEvent> ContextCleared = new();
+    }
+
+    // ── Logic Flow 事件 ─────────────────────────────────────────
+
+    public readonly struct LogicGraphLoadedEvent
+    {
+        public LogicGraphLoadedEvent(LogicGraph graph) => Graph = graph;
+        public LogicGraph Graph { get; }
+    }
+
+    public readonly struct LogicGraphChangedEvent { }
+
+    public readonly struct LogicExecutionCompletedEvent
+    {
+        public LogicExecutionCompletedEvent(string triggerName, bool success)
+        {
+            TriggerName = triggerName;
+            Success = success;
+        }
+        public string TriggerName { get; }
+        public bool Success { get; }
+    }
+
+    public static class LogicEvents
+    {
+        public static readonly EventChannel<LogicGraphLoadedEvent> GraphLoaded = new() { DebugLabel = "LogicEvents.GraphLoaded" };
+        public static readonly EventChannel<LogicGraphChangedEvent> GraphChanged = new() { DebugLabel = "LogicEvents.GraphChanged" };
+        public static readonly EventChannel<LogicExecutionCompletedEvent> ExecutionCompleted = new() { DebugLabel = "LogicEvents.ExecutionCompleted" };
     }
 
     /// <summary>

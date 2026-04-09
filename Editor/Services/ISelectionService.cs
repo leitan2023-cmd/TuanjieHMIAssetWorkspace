@@ -6,7 +6,7 @@ namespace HMI.Workspace.Editor.Services
     /// <summary>
     /// 选择服务接口：封装 Unity Editor 的 Selection API
     /// </summary>
-    public interface ISelectionService
+    public interface ISelectionService : IDisposable
     {
         UnityEngine.Object GetActiveObject();
         GameObject GetActiveGameObject();

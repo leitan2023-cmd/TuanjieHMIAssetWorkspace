@@ -1,0 +1,341 @@
+/* ══════════════════════════════════════════════════════════════════
+   HMI Asset Studio — 欢迎页（单屏紧凑布局 + 图片）
+   ══════════════════════════════════════════════════════════════════ */
+
+.welcome-root {
+    flex-grow: 1;
+    background-color: rgb(9, 9, 11);
+    overflow: hidden;
+}
+
+.welcome-container {
+    flex-grow: 1;
+    padding: 28px 40px 0 40px;
+}
+
+/* ── 背景装饰光晕 ── */
+.welcome-glow-top {
+    position: absolute;
+    top: -40px;
+    right: 60px;
+    width: 400px;
+    height: 300px;
+    background-color: rgba(30, 32, 58, 0.40);
+    border-radius: 200px;
+    opacity: 0.5;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Hero 区域（左文字 + 右图片）
+   ══════════════════════════════════════════════════════════════════ */
+
+.welcome-hero {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    -unity-background-scale-mode: scale-and-crop;
+    padding: 32px;
+    min-height: 300px;
+    justify-content: space-between;
+}
+
+.welcome-hero-text {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.welcome-tag-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.welcome-tag-line {
+    width: 31px;
+    height: 1px;
+    background-color: rgba(59, 130, 246, 0.50);
+    margin-right: 10px;
+}
+
+.welcome-tag-label {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: rgba(96, 165, 250, 0.85);
+    letter-spacing: 2.5px;
+}
+
+.welcome-title {
+    font-size: 39px;
+    -unity-font-style: bold;
+    color: rgb(248, 248, 255);
+    margin-bottom: 2px;
+    letter-spacing: -0.5px;
+}
+
+.welcome-subtitle {
+    font-size: 17px;
+    color: rgb(200, 200, 215);
+    margin-bottom: 3px;
+}
+
+.welcome-desc {
+    font-size: 14px;
+    color: rgb(130, 132, 150);
+    white-space: normal;
+    max-width: 500px;
+    margin-bottom: 0;
+}
+
+.welcome-btn-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+.welcome-btn-primary {
+    padding: 7px 24px;
+    border-radius: 6px;
+    background-color: rgb(59, 130, 246);
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    -unity-font-style: bold;
+    border-width: 0;
+    margin-right: 10px;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+}
+
+.welcome-btn-primary:hover {
+    background-color: rgb(37, 99, 235);
+}
+
+.welcome-btn-secondary {
+    padding: 7px 24px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.03);
+    color: rgb(200, 200, 215);
+    font-size: 12px;
+    -unity-font-style: bold;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.10);
+    transition-property: background-color, border-color;
+    transition-duration: 0.15s;
+}
+
+.welcome-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ── 卡片图片（横向铺满背景） ── */
+
+/* ══════════════════════════════════════════════════════════════════
+   能力卡片区
+   ══════════════════════════════════════════════════════════════════ */
+
+.welcome-card-section {
+    flex-shrink: 0;
+}
+
+.welcome-section-header {
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.welcome-section-title {
+    font-size: 10px;
+    -unity-font-style: bold;
+    color: rgb(100, 100, 120);
+    letter-spacing: 3px;
+}
+
+.welcome-card-grid {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   卡片
+   ══════════════════════════════════════════════════════════════════ */
+
+.welcome-card {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 14px;
+    padding: 14px;
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.018);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.05);
+    transition-property: background-color, border-color;
+    transition-duration: 0.3s;
+}
+
+.welcome-card:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── 卡片图片（横向铺满背景） ── */
+.welcome-card-img {
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    -unity-background-scale-mode: scale-and-crop;
+    overflow: hidden;
+}
+
+/* ── 图标 + 标题行 ── */
+.welcome-card-head {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.welcome-card-icon-box {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    border-width: 1px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.welcome-card-icon {
+    font-size: 12px;
+}
+
+.welcome-card-title {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: rgb(240, 240, 248);
+    letter-spacing: -0.2px;
+}
+
+/* 蓝色 */
+.welcome-card-icon-box--blue {
+    border-color: rgba(59, 130, 246, 0.22);
+}
+
+.welcome-card-icon-box--blue .welcome-card-icon {
+    color: rgb(96, 165, 250);
+}
+
+.welcome-card-action--blue {
+    color: rgb(96, 165, 250);
+}
+
+.welcome-card--blue:hover {
+    border-color: rgba(59, 130, 246, 0.22);
+}
+
+/* 紫色 */
+.welcome-card-icon-box--purple {
+    border-color: rgba(168, 85, 247, 0.22);
+}
+
+.welcome-card-icon-box--purple .welcome-card-icon {
+    color: rgb(192, 132, 252);
+}
+
+.welcome-card-action--purple {
+    color: rgb(192, 132, 252);
+}
+
+.welcome-card--purple:hover {
+    border-color: rgba(168, 85, 247, 0.22);
+}
+
+/* 绿色 */
+.welcome-card-icon-box--green {
+    border-color: rgba(16, 185, 129, 0.22);
+}
+
+.welcome-card-icon-box--green .welcome-card-icon {
+    color: rgb(52, 211, 153);
+}
+
+.welcome-card-action--green {
+    color: rgb(52, 211, 153);
+}
+
+.welcome-card--green:hover {
+    border-color: rgba(16, 185, 129, 0.22);
+}
+
+/* ── 卡片描述 ── */
+.welcome-card-desc {
+    font-size: 11px;
+    color: rgb(140, 142, 160);
+    white-space: normal;
+    margin-bottom: 10px;
+}
+
+/* ── 卡片底部操作 ── */
+.welcome-card-action {
+    flex-direction: row;
+    align-items: center;
+}
+
+.welcome-card-action-text {
+    font-size: 9px;
+    -unity-font-style: bold;
+    letter-spacing: 2px;
+}
+
+.welcome-card-action-arrow {
+    font-size: 12px;
+    margin-left: 6px;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+}
+
+.welcome-card:hover .welcome-card-action-arrow {
+    opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Footer
+   ══════════════════════════════════════════════════════════════════ */
+
+.welcome-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.03);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin-top: auto;
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgb(10, 10, 13);
+}
+
+.welcome-footer-links {
+    flex-direction: row;
+}
+
+.welcome-footer-link {
+    font-size: 10px;
+    color: rgb(100, 100, 115);
+    letter-spacing: 1px;
+    margin-right: 28px;
+    transition-property: color;
+    transition-duration: 0.15s;
+}
+
+.welcome-footer-link:hover {
+    color: rgb(220, 220, 230);
+}
+
+.welcome-footer-copy {
+    font-size: 10px;
+    color: rgb(60, 60, 72);
+}

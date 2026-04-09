@@ -16,6 +16,9 @@ namespace HMI.Workspace.Editor.Core
             _value = initialValue;
         }
 
+        /// <summary>调试标签，用于 PerfTrace 计数（可选设置）。</summary>
+        public string DebugLabel { get; set; }
+
         public T Value
         {
             get => _value;
@@ -24,6 +27,7 @@ namespace HMI.Workspace.Editor.Core
                 if (EqualityComparer<T>.Default.Equals(_value, value)) return;
                 var oldValue = _value;
                 _value = value;
+                if (DebugLabel != null) PerfTrace.Count($"Observable.Changed:{DebugLabel}");
                 Changed?.Invoke(oldValue, _value);
             }
         }

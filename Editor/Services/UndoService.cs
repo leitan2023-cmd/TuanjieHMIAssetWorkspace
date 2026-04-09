@@ -14,5 +14,15 @@ namespace HMI.Workspace.Editor.Services
         {
             if (obj != null) Undo.RegisterCreatedObjectUndo(obj, name);
         }
+
+        public void SetGroupName(string name)
+        {
+            Undo.SetCurrentGroupName(name);
+        }
+
+        public void PerformUndo()
+        {
+            Undo.PerformUndo();
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace HMI.Workspace.Editor.Services
         public void PingObject(UnityEngine.Object obj) => EditorGUIUtility.PingObject(obj);
 
         private void RaiseSelectionChanged() => SelectionChanged?.Invoke();
+
+        public void Dispose()
+        {
+            Selection.selectionChanged -= RaiseSelectionChanged;
+        }
     }
 }

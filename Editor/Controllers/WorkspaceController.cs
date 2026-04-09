@@ -22,7 +22,13 @@ namespace HMI.Workspace.Editor.Controllers
         public void Initialize()
         {
             foreach (var child in _children) child.Initialize();
-            _state.StatusMessage.Value = "Workspace ready";
+            _state.StatusMessage.Value = "工作区就绪";
+        }
+
+        public void SetViewMode(ViewMode mode)
+        {
+            _state.CurrentViewMode.Value = mode;
+            _state.StatusMessage.Value = $"\u5DF2\u5207\u6362\u5230{mode.ToLabel()}\u89C6\u56FE";
         }
 
         public void Dispose()

@@ -1,6 +1,6 @@
 {
   "name": "com.hmi.workspace.Editor",
-  "references": [],
+  "references": ["com.hmi.workspace.Runtime"],
   "includePlatforms": ["Editor"],
   "excludePlatforms": [],
   "allowUnsafeCode": false,

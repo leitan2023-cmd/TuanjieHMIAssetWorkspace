@@ -1,34 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <ui:VisualElement name="workspace-root" class="workspace-root">
+        <!-- ── 顶栏 ── -->
         <ui:VisualElement name="top-bar" class="top-bar">
-            <ui:Label name="selection-label" text="(none)" class="top-item" />
-            <ui:Label name="scene-label" text="Untitled Scene" class="top-item" />
-            <ui:TextField name="command-input" class="command-input" />
-            <uie:ToolbarSearchField name="search-input" class="search-input" />
-            <ui:Label name="pipeline-label" text="Built-in" class="top-item" />
-        </ui:VisualElement>
-        <ui:TwoPaneSplitView name="main-split" fixed-pane-index="0" fixed-pane-initial-dimension="240" orientation="Horizontal">
-            <ui:VisualElement name="left-panel" class="left-panel">
-                <ui:Label text="Workspace" class="panel-title" />
-                <ui:Button text="Project Assets" />
-                <ui:Button text="Favorites" />
-                <ui:Button text="Recent" />
+            <ui:VisualElement class="top-cluster top-cluster-left">
+                <ui:Label text="HMI Asset Studio" class="workspace-title" />
+                <ui:VisualElement class="top-context-group">
+                    <ui:Label name="selection-label" text="(无)" class="top-context-label" />
+                    <ui:Label name="scene-label" text="未命名" class="top-context-label muted" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:TwoPaneSplitView name="center-right-split" fixed-pane-index="1" fixed-pane-initial-dimension="360" orientation="Horizontal">
-                <ui:VisualElement name="center-panel" class="center-panel">
-                    <ui:ListView name="asset-grid" class="asset-grid" />
+            <ui:VisualElement class="top-cluster top-cluster-center">
+                <uie:ToolbarSearchField name="search-input" class="search-input" />
+            </ui:VisualElement>
+            <ui:VisualElement class="top-cluster top-cluster-right">
+                <ui:Label name="pipeline-label" text="内置" class="pipeline-pill" />
+                <ui:VisualElement class="view-mode-group">
+                    <ui:Button name="view-grid-btn" text="网格" class="mode-btn active" />
+                    <ui:Button name="view-list-btn" text="列表" class="mode-btn" />
                 </ui:VisualElement>
-                <ui:VisualElement name="right-panel" class="right-panel">
-                    <ui:Label name="inspector-asset-name" text="No Selection" class="panel-title" />
-                    <ui:Image name="asset-preview" class="asset-preview" />
-                    <ui:Button name="apply-btn" text="Apply to Selection" />
-                    <ui:Button name="instantiate-btn" text="Instantiate in Scene" />
-                </ui:VisualElement>
-            </ui:TwoPaneSplitView>
-        </ui:TwoPaneSplitView>
-        <ui:VisualElement name="bottom-bar" class="bottom-bar">
-            <ui:Label name="status-message" text="Ready" />
+            </ui:VisualElement>
         </ui:VisualElement>
+
+        <!-- ── 主体 + 底栏 纵向可拖拽分割 ── -->
+        <ui:TwoPaneSplitView name="body-split" fixed-pane-index="1" fixed-pane-initial-dimension="52" orientation="Vertical">
+
+            <!-- ── 主体区域：左侧栏 + 中间 + 右侧栏 ── -->
+            <ui:TwoPaneSplitView name="main-split" fixed-pane-index="0" fixed-pane-initial-dimension="240" orientation="Horizontal">
+                <ui:VisualElement name="left-panel" class="left-panel">
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label text="导航" class="panel-title" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sidebar-content" class="sidebar-content" />
+                </ui:VisualElement>
+                <ui:TwoPaneSplitView name="center-right-split" fixed-pane-index="1" fixed-pane-initial-dimension="340" orientation="Horizontal">
+                    <ui:VisualElement name="center-panel" class="center-panel">
+                        <ui:VisualElement class="center-panel-inner">
+                            <ui:VisualElement class="panel-header center-header">
+                                <ui:VisualElement>
+                                    <ui:Label text="工作区" class="panel-title" />
+                                    <ui:Label text="浏览、预览和管理 HMI 资产" class="panel-subtitle" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="center-toolbar" class="center-toolbar" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="center-stack" class="center-stack">
+                                <ui:VisualElement name="home-view" class="center-view active" />
+                                <ui:VisualElement name="asset-browser-view" class="center-view" />
+                                <ui:VisualElement name="scene-preview-view" class="center-view" />
+                                <ui:VisualElement name="compare-view" class="center-view" />
+                                <ui:VisualElement name="vehicle-setup-view" class="center-view" />
+                                <ui:VisualElement name="batch-replace-view" class="center-view" />
+                                <ui:VisualElement name="scene-builder-view" class="center-view" />
+                                <ui:VisualElement name="logic-flow-view" class="center-view" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="right-panel" class="right-panel">
+                        <ui:VisualElement class="panel-header">
+                            <ui:VisualElement class="tab-strip">
+                                <ui:Button name="preview-tab-btn" text="检查" class="tab-btn active" />
+                                <ui:Button name="ai-tab-btn" text="AI 助手" class="tab-btn" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="right-tab-content" class="right-tab-content">
+                            <ui:VisualElement name="preview-tab-content" class="right-tab active" />
+                            <ui:VisualElement name="ai-tab-content" class="right-tab" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:TwoPaneSplitView>
+            </ui:TwoPaneSplitView>
+
+            <!-- ── 底栏：操作反馈 + 撤销 ── -->
+            <ui:VisualElement name="bottom-bar" class="bottom-bar">
+                <ui:VisualElement class="bottom-status-row">
+                    <ui:Label name="status-icon" text="●" class="status-dot success" />
+                    <ui:Label name="status-message" text="就绪" class="status-primary" />
+                    <ui:Label name="pipeline-status" text="HMIRP" class="status-chip info" />
+                    <ui:Button name="undo-btn" text="↩ 撤销" class="bottom-undo-btn" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+        </ui:TwoPaneSplitView>
     </ui:VisualElement>
 </ui:UXML>
